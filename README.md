@@ -1,12 +1,12 @@
 ## Simple Shell Team Project
 This is an ALX Project on Shell. We are tasked to come up with our own version of simple shell
 
-# Project Requirements
+### Project Requirements
 C language
 Shell
 Betty Linter
 
-# General requirements for the Project
+### General requirements for the Project
 All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
 All files should end with a new line
 A README.md file, at the root of the folder of the project is mandatory
@@ -16,7 +16,7 @@ No more than 5 functions per file
 All header files should be include guarded
 Write a README with the description of the project
 
-#Description
+### Description
 hsh is a simple UNIX command language interpreter that reads commands from either a file or standard input and executes them.
 
 How hsh Works
