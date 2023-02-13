@@ -1,6 +1,10 @@
 # Simple Shell Team Project
 This is an ALX Project on Shell. We are tasked to come up with our own version of simple shell
 
+## Flowchat ##
+![](c_simple_shell_flow_chart.jpeg)
+
+
 ## Project Requirements
 * C language
 * Shell
