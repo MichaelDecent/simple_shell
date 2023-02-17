@@ -84,5 +84,7 @@ $
 ~~~~
 
 ## Authors ##
-* Oluwadamilola SONAIKE -  [github][https://github.com/damiso15] || [LinkedIn][https://www.linkedin.com/in/oluwadamilola-sonaike/]
-* Michael NWOGHA - [github][https://github.com/MichaelDecent] || [LinkedIn][]
+* Oluwadamilola SONAIKE -  [github][https://github.com/damiso15] 
+[LinkedIn][https://www.linkedin.com/in/oluwadamilola-sonaike/]
+* Michael NWOGHA - [github][https://github.com/MichaelDecent] 
+[LinkedIn][https://www.linkedin.com/in/michael-nwogha]
