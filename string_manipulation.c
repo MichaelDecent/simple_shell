@@ -75,3 +75,51 @@ int str_cmp(char *s1, char *s2)
 
 	return (0);
 }
+
+
+/**
+ * str_tok - a function that split a string by some delimiter
+ * @string: the string with the delimiter
+ * @delim: the delimiter
+ * Return: the string without delimitter
+ */
+char *str_tok(char *string, char *delim)
+{
+	static char *remember = NULL;
+	int len, num, counter;
+
+	len = counter = 0;
+
+	if (delim == NULL)
+		return (NULL);
+
+	if (string == NULL && remember == NULL)
+		return (NULL);
+
+	if (string == NULL)
+		string = remember;
+
+	len = str_len(string) + 1;
+	for (num = 0; num < len; num++)
+	{
+		if (string[num] == delim[0])
+		{
+			counter = 1;
+			break;
+		}
+	}
+
+	if (counter != 1)
+	{
+		remember = NULL;
+		return (string);
+	}
+
+	string[num] = '\0';
+	if (string + num + 1 != NULL)
+		remember = string + num + 1;
+	else
+		remember = NULL;
+
+	return (string);
+}
