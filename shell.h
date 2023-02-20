@@ -36,6 +36,13 @@ int env_check(char *input);
 int exit_check(char *input, char *COMM);
 
 
+/* SHELL ENV */
+void get_env(char **env);
+char **path_array(char **env);
+int path_counter(char *path);
+char *get_path(char **path_array, char *token);
+
+
 /* SHELL ERROR */
 void exit_err(char *COMM, char *input);
 void command_execute_err(__attribute__((unused))char *COMM, char *message);
