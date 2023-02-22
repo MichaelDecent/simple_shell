@@ -54,14 +54,4 @@ void privilege_err(char *COMM, char *message);
 void process_fork(char **commands, char **arr, char **env, char *COMM, char *input);
 
 
-/* SHELL MEMORY */
-void free_arr(char **arr);
-
-
-/* SHELL INTEGERS */
-int atoi_(char *str);
-void print_num(int num);
-
-
-
 #endif
