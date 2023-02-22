@@ -58,7 +58,7 @@ void process_fork(char **commands, char **arr, char **env, char *COMM, char *inp
 void free_arr(char **arr);
 
 
-/* SHELL INTEGERS */
+/* INTEGERS MANIPULATION */
 int atoi_(char *str);
 void print_num(int num);
 
