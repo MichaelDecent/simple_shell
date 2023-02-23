@@ -1,18 +1,19 @@
-# include "shell.h"
-
+#include "shell.h"
 
 /**
- * free_arr - a function that frees a memory
- * @arr: the pointer to the arry
- * Return: Nothing
+ * bfree - frees a pointer and NULLs the address
+ * @ptr: address of the pointer to free
+ *
+ * Return: 1 if freed, otherwise 0.
  */
-void free_arr(char **arr)
+int bfree(void **ptr)
 {
-	size_t num;
-
-	for (num = 0; arr[num] != '\0'; num++)
+	if (ptr && *ptr)
 	{
-		free(arr);
+		free(*ptr);
+		*ptr = NULL;
+		return (1);
 	}
-	free(arr);
+	return (0);
 }
+

@@ -1,70 +1,103 @@
 #include "shell.h"
 
 /**
- * exit_err - a function that prints to STDERR if user input
- * an wrong exit code
- * @COMM: the command name
- * @input: the command
+ * _eputs - prints an input string
+ * @str: the string to be printed
+ *
+ * Return: Nothing
  */
-
-void exit_err(char *COMM, char *input);
+void _eputs(char *str)
 {
-	char *token;
+	int i = 0;
 
-	token = str_tok(input, "\n ");
-	token = str_tok(NULL, "\n ");
-
-	write(2, COMM, str_len(COMM));
-	write(2, ": ", 2);
-	print_number(errorcount);
-	write(2, ": exit: Illegal number: ", 24);
-	write(2, token, _strlen(token));
-	write(2, "\n", 1);
+	if (!str)
+		return;
+	while (str[i] != '\0')
+	{
+		_eputchar(str[i]);
+		i++;
+	}
 }
-
-
-/*
- * command_not_found_err - a function that prints to STDERR if
- * user command is not found
- * @COMM: the command name
- * @message: the error
- */
-void command_not_found_err(char *COMM, char *message);
-{
-	write(2, COMM, _strlen(COMM));
-	write(2, ": ", 2);
-	print_number(errorcount);
-	write(2, ": ", 2);
-	write(2, message, str_len(message));
-	write(2, ": not found\n", 13);
-
-	exitcode = 127;
-}
-
 
 /**
- * command_execute_err - a function that prints to STDERR if
- * user command cannot execute
- * @COMM: the command name
- * @message: the error
+ * _eputchar - writes the character c to stderr
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-void command_execute_err(__attribute__((unused))char *COMM, char *message);
+int _eputchar(char c)
 {
-	perror(message);
-	exitcode = 2;
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(2, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
 }
 
+/**
+ * _putfd - writes the character c to given fd
+ * @c: The character to print
+ * @fd: The filedescriptor to write to
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putfd(char c, int fd)
+{
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(fd, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
+}
 
 /**
- * privilege_err - a function that prints to STDERR if
- * user does have enough privilege
- * @COMM: the command name
- * @message: the error
+ * _putsfd - prints an input string
+ * @str: the string to be printed
+ * @fd: the filedescriptor to write to
+ *
+ * Return: the number of chars put
  */
-void privilege_err(char *COMM, char *message);
+int _putsfd(char *str, int fd)
 {
-	write(2, COMM, str_len(COMM));
-	write(2, ": ", 2);
-	write(2, message, str_len(message));
-	write(2, ": Permission denied\n", 20);
+	int i = 0;
+
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		i += _putfd(*str++, fd);
+	}
+	return (i);
+}
+
+/**
+ * print_error - prints an error message
+ * @info: the parameter & return info struct
+ * @estr: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
+ */
+void print_error(info_t *info, char *estr)
+{
+	_eputs(info->fname);
+	_eputs(": ");
+	print_d(info->line_count, STDERR_FILENO);
+	_eputs(": ");
+	_eputs(info->argv[0]);
+	_eputs(": ");
+	_eputs(estr);
 }
