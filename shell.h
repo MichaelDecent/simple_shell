@@ -63,5 +63,9 @@ int atoi_(char *str);
 void print_num(int num);
 
 
+/* SHELL PARSE */
+char **input_parse(char *input, char **arr, char *COMM);
+int counter_arg(char *input);
+
 
 #endif
