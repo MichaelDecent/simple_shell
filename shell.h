@@ -68,4 +68,8 @@ char **input_parse(char *input, char **arr, char *COMM);
 int counter_arg(char *input);
 
 
+/* SHELL SPLASH */
+void splash_display(FILE *file_ptr);
+
+
 #endif
